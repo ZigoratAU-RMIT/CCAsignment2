@@ -1,34 +1,41 @@
 package com.example.uberrequest;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PointOfInterest;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final int REQUEST_LOCATION_PERMISSION = 99;
     private GoogleMap mMap;
+    private EditText mSearchText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+
         mapFragment.getMapAsync(this);
+
+        mSearchText = (EditText) findViewById(R.id.input_search);
+        init();
+    }
+
+    private void init(){
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH ||
+                    actionId == EditorInfo.IME_ACTION_DONE ||
+                    keyEvent.getAction() == KeyEvent.ACTION_DOWN ||
+                    keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
+                    goLocate();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void goLocate(){
+        String searchinString = mSearchText.getText().toString();
+        Geocoder geocoder = new Geocoder(MapsActivity.this);
+        List<Address> list = new ArrayList<>();
+        try{
+            list = geocoder.getFromLocationName(searchinString,1);
+        }catch (IOException e){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        if(list.size() > 0){
+            Address address = list.get(0);
+            LatLng findLocation = new LatLng(address.getLatitude() ,address.getLongitude());//  -34, 151);
+            mMap.addMarker(new MarkerOptions().position(findLocation).title(mSearchText.getText().toString()));// address.getPostalCode()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(findLocation,15.0f));
+            Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void enableMyLocation() {
@@ -83,7 +128,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -99,10 +143,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setMapLongClick(mMap);
         setPoiClick(mMap);
         enableMyLocation();
+        init();
         // Add a marker in Sydney and move the camera
-//        LatLng myLocation = new LatLng(-38.131677, 144.321029);
-//        mMap.addMarker(new MarkerOptions().position(myLocation).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation,10F));
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
@@ -125,28 +170,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_options, menu);
+        inflater.inflate(R.menu.example_menu,menu);
+        //inflater.inflate(R.menu.map_options, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Change the map type based on the user's selection.
-        switch (item.getItemId()) {
-            case R.id.normal_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                return true;
-            case R.id.hybrid_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                return true;
-            case R.id.satellite_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                return true;
-            case R.id.terrain_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    public void onZoom(View view)
+    {
+        if(view.getId() == R.id.ic_zoom_in){
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        }
+        if(view.getId() == R.id.ic_zoom_out){
+            mMap.animateCamera(CameraUpdateFactory.zoomOut());
         }
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Change the map type based on the user's selection.
+//        switch (item.getItemId()) {
+//            case R.id.normal_map:
+//                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//                return true;
+//            case R.id.hybrid_map:
+//                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//                return true;
+//            case R.id.satellite_map:
+//                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//                return true;
+//            case R.id.terrain_map:
+//                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 }
