@@ -1,0 +1,13 @@
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/DistanceMeasurer.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/clustering/mapreduce/KMeansReducer.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/ZeroDistance.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/HaversineDistance.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/SimilarityMeasurer.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/clustering/model/DataPoint.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/clustering/mapreduce/KMeansClusteringJob.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/CosineDistance.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/clustering/model/Centroid.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/clustering/mapreduce/KMeansMapper.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/ManhattanDistance.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/JaccardDistance.java
+/Users/rberangi/Desktop/mapreduce-kmeans/src/au/edu/rmit/bdp/distance/EuclidianDistance.java
