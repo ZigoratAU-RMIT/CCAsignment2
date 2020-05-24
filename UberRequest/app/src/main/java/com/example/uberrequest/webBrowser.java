@@ -16,7 +16,7 @@ public class webBrowser extends AppCompatActivity {
 
         WebView webView = new WebView(this);
                 setContentView(webView);
-                webView.loadUrl("https://masaf.ir");
+                webView.loadUrl("http://100.27.13.191");
 
     }
 }
