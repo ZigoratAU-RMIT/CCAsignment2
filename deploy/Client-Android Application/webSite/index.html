@@ -7,6 +7,9 @@
   box-sizing: border-box;
 }
 
+.row{
+  margin-top: 40px;
+}
 .row::after {
   content: "";
   clear: both;
@@ -17,9 +20,7 @@
   float: left;
   padding: 15px;
 }
-body {
-  background-color: royalblue;
-}
+
 html {
   font-family: "Lucida Sans", sans-serif;
 }
@@ -30,6 +31,45 @@ html {
   padding: 15px;
 }
 
+.shadow{
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+}
+.effect5
+{
+  position: relative;
+}
+.effect5:before, .effect5:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 25px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 35px 20px #777;
+  -moz-box-shadow: 0 35px 20px #777;
+  box-shadow: 0 35px 20px #777;
+  -webkit-transform: rotate(-8deg);
+  -moz-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+}
+.effect5:after
+{
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  right: 10px;
+  left: auto;
+}
+
+
 .menu ul {
   list-style-type: none;
   margin: 0;
@@ -39,9 +79,11 @@ html {
 .menu li {
   padding: 8px;
   margin-bottom: 7px;
-  background-color: #33b5e5;
+  background-color: gray;
   color: #ffffff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  text-align: center;
+  font-size: 25px;
 }
 
 .menu li:hover {
@@ -71,6 +113,7 @@ html {
 }
 .graph{
   text-align: center;
+  margin-top: 50px;
 }
 img{
   width: :700px;
@@ -80,6 +123,13 @@ img{
 .img2{
   width: :500px;
   height: 500px;
+}
+
+div.polaroid {
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
 }
 
 @media only screen and (min-width: 768px) {
@@ -118,25 +168,56 @@ img{
 </head>
 <body>
 
-<div class="header">
+<div class="header shadow">
   <h1 style="text-align:center;">UBER Surge Result</h1>
 </div>
+<br/>
+<br/>
+<div class="rows polaroid">
+  <div class="col-3 menu">
+    <ul>
+      <li class="shadow">Plot points in map from clustring result</li>
+    </ul>
+  </div>
+  <div class="graph polaroid">
+    <img src="Rplot01.jpg" alt="Plot result">
+</div>
+
+<div class="graph polaroid">
+  <img src="Rplot02.jpg" alt="Plot result">
+</div>
+<div class="row">
+  <div class="col-3 menu">
+    <ul>
+      <li>Plot points details area</li>
+    </ul>
+  </div>
+  <div class="graph  polaroid">
+  <img class="img2" src="Rplot03.jpg" alt="Pie result">
+</div>
+
 
 <div class="row">
   <div class="col-3 menu">
     <ul>
-      <li>Plot points in map from clustring result</li>
+      <li>
+        There are approximately 500,000 data points in our dataset which results in a very high density while visualizing it, in order to identify the busiest locations on the map, we would decrease the opacity of the data points in the same 3. Style section in GeoViz, to highlight the most crowded areas
+      </li>
     </ul>
   </div>
-  <div class="graph">
-    <img src="Rplot01.jpg" alt="Plot result">
-</div>
-<div class="graph">
-  <img src="Rplot02.jpg" alt="Plot result">
-</div>
-<div class="graph">
-  <img src="Rplot03.jpg" alt="Plot result">
-</div>
+  <div class="graph polaroid">
+    <img src="Rplot04.jpg" alt="Plot result">
+  </div>
+  <div class="graph polaroid">
+    <img src="Rplot05.jpg" alt="Plot result">
+  </div>
+  <div class="graph polaroid">
+    <img src="Rplot06.jpg" alt="Plot result">
+  </div>
+  <div class="graph polaroid">
+    <img src="Rplot07.jpg" alt="Plot result">
+  </div>
+
 
 <div class="row">
   <div class="col-3 menu">
@@ -144,7 +225,7 @@ img{
       <li>Pie chart show points and samples</li>
     </ul>
   </div>
-  <div class="graph">
+  <div class="graph polaroid">
   <img class="img2" src="Pie.jpg" alt="Pie result">
 </div>
 
@@ -154,7 +235,7 @@ img{
       <li>Plot Store database</li>
     </ul>
   </div>
-  <div class="graph">
+  <div class="graph polaroid">
   <img class="img2" src="Points.png" alt="Points Databasae">
 </div>
 
@@ -164,7 +245,7 @@ img{
       <li>Login Databasae</li>
     </ul>
   </div>
-  <div class="graph">
+  <div class="graph polaroid">
   <img class="img2" src="Login.png" alt="Login Databasae">
 </div>
 
@@ -174,12 +255,13 @@ img{
       <li>Analytic</li>
     </ul>
   </div>
-  <div class="graph">
+  <div class="graph polaroid">
     <img src="Analytic-01.png" alt="Analytic result">
-</div>
-<div class="graph">
-  <img src="Analytic-02.png" alt="Analytic result">
-</div>
+    <div class="graph">
+      <img src="Analytic-02.png" alt="Analytic result">
+    </div>
+  </div>
+
 
 
 

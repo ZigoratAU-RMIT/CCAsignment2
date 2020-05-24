@@ -3,6 +3,7 @@ package com.example.uberrequest;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -48,10 +49,10 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
 
     private static final String TAG = "Error";
     private GoogleMap mMap;
-        private FirebaseFirestore db;
-        private List<LatLng> analyseList = new ArrayList<>();
-        private  int locCounter;
-
+    private FirebaseFirestore db;
+    private List<LatLng> analyseList = new ArrayList<>();
+    private  int locCounter;
+    private Button btnShowAnalyseMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,14 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        btnShowAnalyseMap = (Button) findViewById(R.id.btnShowAnalyseMap);
+        btnShowAnalyseMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),webBrowser.class));
+            }
+        });
     }
 
     /**
@@ -81,12 +90,12 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
         mMap.addMarker(new MarkerOptions()
                 .position(loc)
                 .title("Marker in New York"));
-        mMap.addCircle(new CircleOptions()
-                .center(loc)
-                .radius(900.0)
-                .strokeWidth(3f)
-                .strokeColor(Color.BLUE)
-                .fillColor(Color.argb(70,255,125,65)));
+//        mMap.addCircle(new CircleOptions()
+//                .center(loc)
+//                .radius(1200.0)
+//                .strokeWidth(3f)
+//                .strokeColor(Color.BLUE)
+//                .fillColor(Color.argb(70,255,125,65)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,11.0f));;
         showAnalyse();
         showArea();
@@ -115,7 +124,7 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                                 mMap.addCircle(new CircleOptions()
                                         .center(item)
-                                        .radius(800.0)
+                                        .radius(1200.0)
                                         .strokeWidth(3f)
                                         .strokeColor(Color.BLUE)
                                         .fillColor(Color.argb(70,0,127,255)));
@@ -125,7 +134,7 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                                 mMap.addCircle(new CircleOptions()
                                         .center(item)
-                                        .radius(800.0)
+                                        .radius(1200.0)
                                         .strokeWidth(3f)
                                         .strokeColor(Color.BLUE)
                                         .fillColor(Color.argb(70,50,50,250)));
@@ -135,7 +144,7 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
                                 mMap.addCircle(new CircleOptions()
                                         .center(item)
-                                        .radius(800.0)
+                                        .radius(1200.0)
                                         .strokeWidth(3f)
                                         .strokeColor(Color.BLUE)
                                         .fillColor(Color.argb(70,0,255,255)));
@@ -145,7 +154,7 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                                 mMap.addCircle(new CircleOptions()
                                         .center(item)
-                                        .radius(800.0)
+                                        .radius(1200.0)
                                         .strokeWidth(3f)
                                         .strokeColor(Color.BLUE)
                                         .fillColor(Color.argb(70,50,150,50)));
@@ -155,7 +164,7 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
                                 mMap.addCircle(new CircleOptions()
                                         .center(item)
-                                        .radius(800.0)
+                                        .radius(1200.0)
                                         .strokeWidth(3f)
                                         .strokeColor(Color.BLUE)
                                         .fillColor(Color.argb(70,255,0,255)));
@@ -165,7 +174,7 @@ public class MapsActivityAnalyze extends FragmentActivity implements OnMapReadyC
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                                 mMap.addCircle(new CircleOptions()
                                         .center(item)
-                                        .radius(800.0)
+                                        .radius(1200.0)
                                         .strokeWidth(3f)
                                         .strokeColor(Color.BLUE)
                                         .fillColor(Color.argb(70,255,69,0)));
