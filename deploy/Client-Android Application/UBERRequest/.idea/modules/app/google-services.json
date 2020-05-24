@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "351669482497",
+    "firebase_url": "https://uber-surge-276006.firebaseio.com",
+    "project_id": "uber-surge-276006",
+    "storage_bucket": "uber-surge-276006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351669482497:android:eb49498b6d476b1a4e3c00",
+        "android_client_info": {
+          "package_name": "com.example.uberrequest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351669482497-cmuc2uj9s8kv6jvm47r6bm75br2hpq5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE8-kgdZdcJvgM_15VrldjXe7nU1KXsu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351669482497-cmuc2uj9s8kv6jvm47r6bm75br2hpq5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
