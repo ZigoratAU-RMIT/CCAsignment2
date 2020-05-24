@@ -58,7 +58,7 @@ public class ChartBarActivity extends AppCompatActivity {
         yAxis.setTextColor(Color.parseColor("#03A9F4"));
         yAxis.setTextSize(16);
 
-        yAxis.setName("Sales in 200000");
+        yAxis.setName("Sales in 500000");
         xAxis.setName("Points");
 
 
